@@ -13,11 +13,20 @@ Table of Contents
 Example
 -------
 ```go
-omx := NewOMXPlayer()
-omx.Open("file.mp4")
-omx.Pause()
-omx.Play()
-omx.Quit()
+omx := NewOMXPlayer("file.mp4", false, false, nil)
+
+waiting := make(chan string)
+defer close(waiting)
+
+// Returned errors are ignored for brevity.
+_ := omx.Open(waiting)
+_ := omx.Pause()
+_ := omx.Play()
+_ := omx.Quit()
+
+// Wait for OMXPlayer process to end.
+_ := <-waiting
+
 ```
 
 References

@@ -23,11 +23,11 @@ func (c *mockCmd) Wait() error {
 
 func setupOMX() (*OMXPlayer, error) {
 	var cmd spyCmd = &mockCmd{}
-	return NewOMXPlayer(true, true, "video.mp4", "hdmi", cmd)
+	return NewOMXPlayer("video.mp4", true, true, cmd)
 }
 
 func TestNewOMXPlayer(t *testing.T) {
-	if _, err := NewOMXPlayer(true, true, "video.mp4", "hdmi", nil); err != nil && err.Error() != "cmd cannot be nil if testing" {
+	if _, err := NewOMXPlayer("video.mp4", true, true, nil); err != nil && err.Error() != "cmd cannot be nil if testing" {
 		t.Error("Should have returned correct error message, instead got: ", err)
 	}
 

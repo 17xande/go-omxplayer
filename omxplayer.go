@@ -45,7 +45,7 @@ type spyCmd interface {
 
 // NewOMXPlayer returns a pointer to a new OMXPlayer instance.
 // cmd should always be nil, unless a mock is being sent in for a test.
-func NewOMXPlayer(testing bool, debug bool, filename string, audioOutput string, cmd spyCmd) (*OMXPlayer, error) {
+func NewOMXPlayer(filename string, testing bool, debug bool, cmd spyCmd) (*OMXPlayer, error) {
 	if testing && cmd == nil {
 		return nil, fmt.Errorf("cmd cannot be nil if testing")
 	}
@@ -57,8 +57,8 @@ func NewOMXPlayer(testing bool, debug bool, filename string, audioOutput string,
 
 	// OMXPlayer command flags.
 	args := []string{
-		"--blank",             // Set the video background colour to black.
-		"--adev", audioOutput, // Set audio output device.
+		"--blank",        // Set the video background colour to black.
+		"--adev", "both", // Set audio output device to both HDMI and audio jack.
 		filename, // File to be played.
 	}
 

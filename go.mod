@@ -1,4 +1,4 @@
-module example.com/me/omxplayer
+module github.com/17xande/omxplayer
 
 go 1.13
 
